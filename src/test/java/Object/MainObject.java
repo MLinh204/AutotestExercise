@@ -40,4 +40,16 @@ public class MainObject {
         WebElement signupForm = getSignupForm();
         return signupForm.findElement(By.xpath(".//button"));
     }
+    public WebElement accountInformationTitle(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//b[text()='Enter Account Information']")));
+    }
+    public WebElement addressInformationTitle(){
+        return driver.findElement(By.xpath("//b[text()='Enter Account Information']"));
+    }
+    public WebElement selectTitleByName(String name){
+        WebElement container = driver.findElement(By.xpath("//div[@class='clearfix']"));
+        String xpath = String.format("//label[text()='%s']//input", name);
+        WebElement radioBtn = container.findElement(By.xpath(xpath));
+        return radioBtn;
+    }
 }

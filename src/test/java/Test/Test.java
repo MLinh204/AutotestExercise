@@ -57,6 +57,9 @@ public class Test {
         mainObject.signupEmailInput().sendKeys("Test@a.com");
         //Step 6: Click signup button
         mainObject.signupBtn().click();
+        //Step 7: Verify that 'ENTER ACCOUNT INFORMATION' is visible
+        assertEquals("ENTER ACCOUNT INFORMATION", mainObject.accountInformationTitle());
+        //
     }
 
 }
