@@ -47,9 +47,15 @@ public class MainObject {
         return driver.findElement(By.xpath("//b[text()='Enter Account Information']"));
     }
     public WebElement selectTitleByName(String name){
-        WebElement container = driver.findElement(By.xpath("//div[@class='clearfix']"));
-        String xpath = String.format("//label[text()='%s']//input", name);
-        WebElement radioBtn = container.findElement(By.xpath(xpath));
-        return radioBtn;
+        String xpath = String.format("//div[@class='clearfix']//label[text()='%s']//input", name);
+        return driver.findElement(By.xpath(xpath));
+    }
+    public WebElement dateOptionsById(String id){
+        String xpath = String.format("//select[@id = '%s']", id);
+        return driver.findElement(By.xpath(xpath));
+    }
+    public WebElement checkboxById(String id){
+        String xpath = String.format("//input[@id = '%s']", id);
+        return driver.findElement(By.xpath(xpath));
     }
 }

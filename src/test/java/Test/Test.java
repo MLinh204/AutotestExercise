@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -58,8 +59,22 @@ public class Test {
         //Step 6: Click signup button
         mainObject.signupBtn().click();
         //Step 7: Verify that 'ENTER ACCOUNT INFORMATION' is visible
-        assertEquals("ENTER ACCOUNT INFORMATION", mainObject.accountInformationTitle());
-        //
+        assertEquals("ENTER ACCOUNT INFORMATION", mainObject.accountInformationTitle().getText());
+        //Step 8: Fill details: Title, Name, Email, Password, Date of birth
+        mainObject.selectTitleByName("Mr. ").click();
+        WebElement nameField = driver.findElement(By.xpath("//input[@id = 'name']"));
+        nameField.clear();
+        nameField.sendKeys("Test");
+        WebElement passwordField = driver.findElement(By.xpath("//input[@id = 'password']"));
+        passwordField.sendKeys("Test123");
+        Select selectDay = new Select(mainObject.dateOptionsById("days"));
+        Select selectMonth = new Select(mainObject.dateOptionsById("months"));
+        Select selectYear = new Select(mainObject.dateOptionsById("years"));
+        selectDay.selectByIndex(1);
+        selectMonth.selectByIndex(2);
+        selectYear.selectByIndex(3);
+        //Step 9: Select checkbox 'Sign up for our newsletter!'
+        mainObject.checkboxById("newsletter").click();
     }
 
 }
